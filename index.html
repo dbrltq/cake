@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+body{margin: 0; background-image: url(bg.jpeg); background-size: cover; background-attachment: fixed;}
+.text{font-size: 2rem; text-align: center; font-weight: bold; margin-top: 50px;}
+.cake {text-align: center;}
+.sheet {width: 1000px; height: auto;}
+.dot {position: absolute;}
+.cream {display: none; position: absolute;}
+.creamimg {width: 150px; height: auto;}
+.fruit {display: none; position: absolute;}
+.fruitimg {width: 130px; height: auto;}
+button {padding: 10px 20px; border-radius: 5px; cursor: pointer; border: none; width: 100px; height: 50px; font-size: 1.2rem; transition: background-color 0.3s} 
+.button-container {text-align: center; margin-top: 25px; margin-bottom: 0px;}
+#creamButton{background-color: #f5f5f5;}
+#fruitButton{background-color: #ff8888;}
+.button:hover ()
+.button:active{background-color: #999999}
+
+</style>
+<title></title>
+</head>
+<body>
+    <div class="text">케이크를 꾸며보자</div>
+	<div class="button-container">
+		<button id="creamButton">휘핑</button>
+		<button id="fruitButton">과일</button>
+	</div>
+
+	<div class="cake">
+   		<img src="cake.png" class="sheet">
+	</div>
+
+	<div class="cream" id="cream-container">
+    	<img src="cream.png" class="creamimg">
+	</div>
+
+	<div class="fruit" id="fruit-container">
+    	<img src="fruit.png" class="fruitimg">
+	</div>
+
+
+
+
+<script type="text/javascript">
+   
+    document.addEventListener('mousedown', function(e) {
+      
+        var clickX = e.clientX;
+        var clickY = e.clientY;
+
+        var cakeElement = document.querySelector('.cake');
+        var cakeRect = cakeElement.getBoundingClientRect();
+        if (clickX >= cakeRect.left && clickX <= cakeRect.right && clickY >= cakeRect.top && clickY <= cakeRect.bottom) {
+            var creamContainer = document.querySelector('.cream');
+            var fruitContainer = document.querySelector('.fruit');
+            var imageSrc = '';
+
+            if (creamContainer.style.display === 'block') {
+                imageSrc = 'cream.png';
+            } else if (fruitContainer.style.display === 'block') {
+                imageSrc = 'fruit.png';
+            }
+
+            if (imageSrc) {
+                var image = document.createElement('img');
+                image.src = imageSrc;
+                image.style.position = 'absolute';
+                image.style.left = (clickX - 75) + 'px';
+                image.style.top = (clickY - 75) + 'px';
+                image.style.width = '150px';
+                document.body.appendChild(image);
+            }
+        }
+    });
+
+    document.getElementById('creamButton').addEventListener('click', function() {
+        var creamContainer = document.querySelector('.cream');
+        var fruitContainer = document.querySelector('.fruit');
+        creamContainer.style.display = 'block';
+        fruitContainer.style.display = 'none';
+    });
+
+    document.getElementById('fruitButton').addEventListener('click', function() {
+        var creamContainer = document.querySelector('.cream');
+        var fruitContainer = document.querySelector('.fruit');
+        creamContainer.style.display = 'none';
+        fruitContainer.style.display = 'block';
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
+
